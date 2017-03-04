@@ -1,0 +1,10 @@
+name "libd-llvm"
+description "SDC LLVM backend"
+
+targetName "d-llvm"
+targetType "library"
+targetPath "../lib"
+
+importPaths "../libd/src"
+sourcePaths "src" 
+sourceFiles "import/llvm/c/analysis.d" "import/llvm/c/targetMachine.d" "import/llvm/c/executionEngine.d" "import/llvm/c/transforms/passManagerBuilder.d" "import/llvm/c/bitWriter.d" "import/llvm/c/executionEngine.d" "import/llvm/c/target.d" "import/llvm/c/core.d" "import/llvm/c/types.d"

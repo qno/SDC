@@ -1,0 +1,18 @@
+name "libd"
+description "SDC D parser library"
+homepage "https://github.com/SDC-Developers/SDC"
+license "MIT"
+copyright "Copyright © 2010-2017 SDC-Developers"
+authors "SDC-Developers"
+
+targetName "d"
+targetPath "../lib"
+
+configuration "staticLib" {
+   targetType "library"
+}
+
+configuration "sharedLib" {
+   targetType "dynamicLibrary"
+}
+

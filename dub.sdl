@@ -1,0 +1,32 @@
+name "sdc"
+description "The Stupid D Compiler"
+homepage "https://github.com/SDC-Developers/SDC"
+license "MIT"
+copyright "Copyright © 2010-2017 SDC-Developers"
+authors "SDC-Developers"
+
+targetType "executable"
+targetName "sdc"
+targetPath "bin"
+
+systemDependencies "LLVM 3.9 development libraries must be available"
+dependency ":libd" version="*"
+dependency ":libd-llvm" version="*"
+subConfiguration ":libd" "staticLib"
+subPackage "libd"
+subPackage "libd-llvm"
+
+sourcePaths "sdc"
+importPaths "libd-llvm/src" "libd-llvm/import"
+
+libs "LLVM-3.9" platform="posix"
+
+buildType "debug" {
+        buildOptions "debugMode" "debugInfo" "warnings" "deprecationWarnings" "warningsAsErrors" "unittests"
+}
+buildType "release" {
+        buildOptions "releaseMode" "optimize" "warnings" "deprecationWarnings" "warningsAsErrors"
+}
+
+// create the sdc.conf file
+postBuildCommands `echo '{\n  "includePath": ["$PWD/phobos", "$PWD/libsdrt/src", "."],\n  "libPath": ["$PWD/lib"],\n}' > bin/sdc.conf` platform="posix"
